@@ -9,4 +9,4 @@ There are no dependencies.
 
 ### Usage
 
-    python hiptrack.py [file] [room token]
+    python hiptrack.py [file] [room id] [room token]
