@@ -76,8 +76,9 @@ while True:
         'Authorization': 'Bearer {0}'.format(args.auth_token),
         'content-type': 'application/json',
     }
+    message  = '\n'.join(message)
     body = json.dumps({
-        'message': '\n'.join(message),
+        'message': message,
         'notify': True,
         'message_format': 'text',
     })
