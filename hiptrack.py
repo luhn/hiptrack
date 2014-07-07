@@ -67,16 +67,24 @@ while True:
         break
 while True:
     message = list()
+    msg_len = 0
     if mentions:
         mention = '{0}: You may want to look at this.'.format(
             ', '.join('@{0}'.format(m) for m in mentions)
         )
         message.append(mention)
-    message.append(q.get().strip('\n'))
+        msg_len += len(mention)
+    line = q.get().strip('\n')
+    message.append(line)
+    msg_len += len(line)
     sleep(1)  # Give it a second to write everything
     while True:
         try:
-            message.append(q.get(False).strip('\n'))
+            line = q.get(False).strip('\n')
+            message.append(line)
+            msg_len += len(line)
+            if msg_len >= 5000:  # Cut off early so we don't hit max msg size
+                break
         except Empty:
             break
 
