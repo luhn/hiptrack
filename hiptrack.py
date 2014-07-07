@@ -38,6 +38,10 @@ parser.add_argument(
           + 'easiest way to acquire this is a room notification token.'),
 )
 args = parser.parse_args()
+if args.mention:
+    mentions = args.mention.split(',')
+else:
+    mentions = list()
 
 q = Queue()
 
@@ -62,10 +66,13 @@ while True:
     except Empty:
         break
 while True:
-    message = [
-        '@{0}, you might want to look at this.'.format(mention)
-        for mention in args.mention.split(',')
-    ] + [q.get().strip('\n')]
+    message = list()
+    if mentions:
+        mention = '{0}: You may want to look at this.'.format(
+            ', '.join('@{0}'.format(m) for m in mentions)
+        )
+        message.append(mention)
+    message.append(q.get().strip('\n'))
     sleep(1)  # Give it a second to write everything
     while True:
         try:
