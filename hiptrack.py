@@ -50,7 +50,9 @@ def reader():
     while True:
         q.put(f.stdout.readline().decode('utf-8'))
 
-threading.Thread(target=reader).start()
+t = threading.Thread(target=reader)
+t.daemon = True  # Thread dies when program is killed.
+t.start()
 
 # We want to ignore the first output
 sleep(1)

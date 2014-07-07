@@ -9,8 +9,3 @@ Tested on Python 2.7 and 3.4, but I believe it should also work on 2.6, 3.2,
 and 3.3.  There are no dependencies.
 
 For usage, run `python hiptrack.py -h`
-
-### Known issues
-
-Keyboard interrupts (Ctrl + C) fail to shutdown the script.  As a workaround,
-I've been using (Ctrl + \), which isn't elegant, but effective.
